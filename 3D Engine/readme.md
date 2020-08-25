@@ -1,9 +1,6 @@
-### Graphics Template
+### 3D CE C Engine
 
-You can clone this directory for your own graphx-based projects.
+This program built for the TI 84 Plus CE line of calculators can render a simple wireframe shape
 
-To add code, fill in the begin, end, step, and draw functions in main.c.
+using the given input coordinates in 3D space.
 
----
-
-This demo is part of the CE C SDK Toolchain.
