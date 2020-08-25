@@ -1,0 +1,1035 @@
+	section	.text
+	assume	adl = 1
+	section	.text
+	public	_main
+_main:
+	ld	hl, -1
+	call	__frameset
+	call	_gfx_Begin
+	ld	hl, -75
+	push	hl
+	call	_gfx_FillScreen
+	pop	hl
+	call	_gfx_SwapDraw
+	ld	hl, -75
+	push	hl
+	call	_gfx_FillScreen
+	pop	hl
+	or	a, a
+	sbc	hl, hl
+	push	hl
+	call	_gfx_SetTextFGColor
+	ld	a, 1
+	pop	hl
+BB0_1:
+	bit	0, a
+	jq	z, BB0_17
+	ld	(ix + -1), a
+	call	_draw
+	call	_gfx_SwapDraw
+	ld	hl, -720866
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld.sis	bc, 2
+	call	__sand
+	add.sis	hl, bc
+	or	a, a
+	sbc.sis	hl, bc
+	ld	iy, _rotation+4
+	lea	iy, iy + 3
+	jq	z, BB0_4
+	ld	bc, (_rotation+4)
+	ld	a, (iy)
+	ld	hl, -5064505
+	ld	e, 61
+	call	__fadd
+	ld	(_rotation+4), bc
+	ld	(_rotation+7), a
+BB0_4:
+	ld	hl, -720866
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld.sis	bc, 4
+	call	__sand
+	add.sis	hl, bc
+	or	a, a
+	sbc.sis	hl, bc
+	jq	z, BB0_6
+	ld	bc, (_rotation+4)
+	ld	a, (iy)
+	ld	hl, -5064505
+	ld	e, -67
+	call	__fadd
+	ld	(_rotation+4), bc
+	ld	(_rotation+7), a
+BB0_6:
+	ld	hl, -720866
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld.sis	bc, 8
+	call	__sand
+	add.sis	hl, bc
+	or	a, a
+	sbc.sis	hl, bc
+	ld	iy, _rotation
+	lea	iy, iy + 3
+	jq	z, BB0_8
+	ld	bc, (_rotation)
+	ld	a, (iy)
+	ld	hl, -5064505
+	ld	e, -67
+	call	__fadd
+	ld	(_rotation), bc
+	ld	(_rotation+3), a
+BB0_8:
+	ld	hl, -720866
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld.sis	bc, 1
+	call	__sand
+	add.sis	hl, bc
+	or	a, a
+	sbc.sis	hl, bc
+	jq	z, BB0_10
+	ld	bc, (_rotation)
+	ld	a, (iy)
+	ld	hl, -5064505
+	ld	e, 61
+	call	__fadd
+	ld	(_rotation), bc
+	ld	(_rotation+3), a
+BB0_10:
+	ld	hl, -720872
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld.sis	bc, 32
+	call	__sand
+	add.sis	hl, bc
+	or	a, a
+	sbc.sis	hl, bc
+	jq	z, BB0_12
+	ld	bc, (_rotation)
+	ld	a, (iy)
+	ld	hl, -5064505
+	ld	e, -67
+	call	__fadd
+	ld	(_rotation), bc
+	ld	(_rotation+3), a
+BB0_12:
+	ld	hl, -720870
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld.sis	bc, 32
+	call	__sand
+	add.sis	hl, bc
+	or	a, a
+	sbc.sis	hl, bc
+	jq	z, BB0_14
+	ld	bc, (_rotation)
+	ld	a, (iy)
+	ld	hl, -5064505
+	ld	e, 61
+	call	__fadd
+	ld	(_rotation), bc
+	ld	(_rotation+3), a
+BB0_14:
+	ld	hl, -720868
+	push	de
+	ld	e, (hl)
+	inc	hl
+	ld	d, (hl)
+	ld	l, e
+	ld	h, d
+	pop	de
+	ld.sis	bc, 64
+	call	__sand
+	add.sis	hl, bc
+	or	a, a
+	sbc.sis	hl, bc
+	ld	a, (ix + -1)
+	jq	z, BB0_16
+	xor	a, a
+BB0_16:
+	jq	BB0_1
+BB0_17:
+	call	_gfx_End
+	or	a, a
+	sbc	hl, hl
+	inc	sp
+	pop	ix
+	ret
+	section	.text
+
+	section	.text
+	public	_begin
+_begin:
+	ret
+	section	.text
+
+	section	.text
+	public	_draw
+_draw:
+	ld	hl, -61
+	call	__frameset
+	ld	hl, _vectors+8
+	ld	(ix + -15), hl
+	ld	hl, _vectorDisplay+3
+	ld	(ix + -24), hl
+	ld	l, 0
+	ld	(ix + -12), hl
+	ld	hl, -75
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	hl, _lineConnections
+	ld	(ix + -6), hl
+	ld	iy, _lineConnections
+	ld	hl, _vectorDisplay
+	ld	(ix + -3), hl
+	ld	(ix + -9), hl
+	ld	bc, 0
+BB2_1:
+	ld	de, (_lineConnectionsSize)
+	push	bc
+	pop	hl
+	or	a, a
+	sbc	hl, de
+	call	__setflag
+	jq	p, BB2_2
+	ld	hl, (iy)
+	ld	(ix + -18), bc
+	ld	bc, 9
+	call	__imulu
+	push	hl
+	pop	de
+	ld	hl, _vectorDisplay
+	lea	bc, iy + 0
+	push	hl
+	pop	iy
+	add	iy, de
+	ld	hl, (iy)
+	ld	(ix + -27), hl
+	ld	de, (iy + 3)
+	push	bc
+	pop	iy
+	ld	(ix + -21), iy
+	ld	hl, (iy + 3)
+	ld	bc, 9
+	call	__imulu
+	push	hl
+	pop	bc
+	ld	iy, _vectorDisplay
+	add	iy, bc
+	ld	hl, (iy)
+	ld	bc, (iy + 3)
+	push	bc
+	push	hl
+	push	de
+	ld	hl, (ix + -27)
+	push	hl
+	call	_gfx_Line
+	ld	bc, (ix + -18)
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	de, (_vectorsSize)
+	push	bc
+	pop	hl
+	or	a, a
+	sbc	hl, de
+	call	__setflag
+	ld	iy, (ix + -9)
+	jq	p, BB2_5
+	ld	hl, (iy)
+	ld	de, (iy + 3)
+	ld	bc, 3
+	push	bc
+	push	de
+	push	hl
+	ld	(ix + -9), iy
+	call	_gfx_FillCircle
+	ld	iy, (ix + -9)
+	ld	bc, (ix + -18)
+	pop	hl
+	pop	hl
+	pop	hl
+BB2_5:
+	inc	bc
+	lea	iy, iy + 9
+	ld	(ix + -9), iy
+	ld	iy, (ix + -21)
+	lea	iy, iy + 6
+	jq	BB2_1
+BB2_2:
+	ld	iy, _rotation+8
+	lea	hl, iy + 3
+	ld	(ix + -9), hl
+	ld	iy, _rotation+4
+	lea	hl, iy + 3
+	ld	(ix + -18), hl
+	ld	iy, _rotation
+	lea	hl, iy + 3
+	ld	(ix + -21), hl
+	ld	bc, 0
+BB2_6:
+	ld	de, (_vectorsSize)
+	push	bc
+	pop	hl
+	or	a, a
+	sbc	hl, de
+	call	__setflag
+	jq	p, BB2_7
+	ld	(ix + -51), bc
+	ld	iy, (ix + -15)
+	ld	hl, (iy + -8)
+	ld	(ix + -42), hl
+	ld	a, (iy + -5)
+	ld	(ix + -39), a
+	ld	hl, (iy + -4)
+	ld	(ix + -36), hl
+	ld	a, (iy + -1)
+	ld	(ix + -33), a
+	ld	hl, (iy)
+	ld	(ix + -30), hl
+	ld	a, (iy + 3)
+	ld	(ix + -27), a
+	ld	bc, (_rotation+8)
+	ld	hl, (ix + -9)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_cos
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -42)
+	ld	a, (ix + -39)
+	call	__fmul
+	ld	(ix + -45), bc
+	ld	(ix + -48), a
+	ld	bc, (_rotation+8)
+	ld	hl, (ix + -9)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_sin
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -36)
+	ld	a, (ix + -33)
+	call	__fmul
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -45)
+	ld	a, (ix + -48)
+	call	__fsub
+	ld	(ix + -45), bc
+	ld	(ix + -48), a
+	ld	bc, (_rotation+8)
+	ld	hl, (ix + -9)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_sin
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -42)
+	ld	a, (ix + -39)
+	call	__fmul
+	ld	(ix + -39), bc
+	ld	(ix + -42), a
+	ld	hl, (_rotation+8)
+	ld	a, (_rotation+11)
+	ld	e, a
+	push	de
+	push	hl
+	call	_cos
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -36)
+	ld	a, (ix + -33)
+	call	__fmul
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -39)
+	ld	a, (ix + -42)
+	call	__fadd
+	ld	(ix + -33), bc
+	ld	(ix + -36), a
+	ld	bc, (_rotation+4)
+	ld	hl, (ix + -18)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_cos
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -45)
+	ld	a, (ix + -48)
+	call	__fmul
+	ld	(ix + -39), bc
+	ld	(ix + -42), a
+	ld	bc, (_rotation+4)
+	ld	hl, (ix + -18)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_sin
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -30)
+	ld	a, (ix + -27)
+	call	__fmul
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -39)
+	ld	a, (ix + -42)
+	call	__fadd
+	ld	(ix + -39), bc
+	ld	(ix + -42), a
+	ld	bc, (_rotation+4)
+	ld	hl, (ix + -18)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_sin
+	ld	(ix + -54), hl
+	ld	(ix + -57), e
+	pop	hl
+	pop	hl
+	ld	hl, (_rotation+4)
+	ld	a, (_rotation+7)
+	ld	e, a
+	push	de
+	push	hl
+	call	_cos
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -30)
+	ld	a, (ix + -27)
+	call	__fmul
+	push	bc
+	pop	iy
+	ld	d, a
+	ld	bc, (ix + -45)
+	ld	a, (ix + -48)
+	ld	hl, (ix + -54)
+	ld	e, (ix + -57)
+	call	__fmul
+	push	bc
+	pop	hl
+	ld	e, a
+	lea	bc, iy + 0
+	ld	a, d
+	call	__fsub
+	ld	(ix + -45), bc
+	ld	(ix + -48), a
+	ld	bc, (_rotation)
+	ld	hl, (ix + -21)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_cos
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -33)
+	ld	a, (ix + -36)
+	call	__fmul
+	ld	(ix + -27), bc
+	ld	(ix + -30), a
+	ld	bc, (_rotation)
+	ld	hl, (ix + -21)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_sin
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -45)
+	ld	a, (ix + -48)
+	call	__fmul
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -27)
+	ld	a, (ix + -30)
+	call	__fsub
+	ld	(ix + -27), bc
+	ld	(ix + -30), a
+	ld	bc, (_rotation)
+	ld	hl, (ix + -21)
+	ld	a, (hl)
+	ld	e, a
+	push	de
+	push	bc
+	call	_sin
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -33)
+	ld	a, (ix + -36)
+	call	__fmul
+	ld	(ix + -33), bc
+	ld	(ix + -36), a
+	ld	hl, (_rotation)
+	ld	a, (_rotation+3)
+	ld	e, a
+	push	de
+	push	hl
+	call	_cos
+	pop	bc
+	pop	bc
+	ld	bc, (ix + -45)
+	ld	a, (ix + -48)
+	call	__fmul
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -33)
+	ld	a, (ix + -36)
+	call	__fadd
+	ld	(ix + -33), bc
+	ld	(ix + -36), a
+	ld	bc, (ix + -39)
+	ld	a, (ix + -42)
+	call	__ftol
+	or	a, a
+	sbc	hl, hl
+	or	a, a
+	sbc	hl, bc
+	push	hl
+	pop	iy
+	push	bc
+	pop	hl
+	ld	de, 0
+	or	a, a
+	sbc	hl, de
+	call	__setflag
+	jq	m, BB2_10
+	push	bc
+	pop	iy
+BB2_10:
+	ld	(ix + -45), bc
+	lea	hl, iy + 0
+	lea	bc, iy + 0
+	add	iy, iy
+	sbc	hl, hl
+	ld	a, l
+	call	__ltof
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -39)
+	ld	a, (ix + -42)
+	call	__fdiv
+	ld	hl, (ix + -33)
+	ld	e, (ix + -36)
+	call	__fmul
+	ld	(ix + -39), bc
+	ld	(ix + -48), a
+	push	hl
+	pop	bc
+	ld	a, e
+	call	__ftol
+	push	bc
+	pop	de
+	or	a, a
+	sbc	hl, hl
+	or	a, a
+	sbc	hl, de
+	push	hl
+	pop	iy
+	push	de
+	pop	hl
+	ld	bc, 0
+	or	a, a
+	sbc	hl, bc
+	call	__setflag
+	ld	(ix + -42), de
+	jq	m, BB2_12
+	lea	de, iy + 0
+BB2_12:
+	push	de
+	pop	hl
+	push	de
+	pop	iy
+	add	iy, iy
+	sbc	hl, hl
+	push	de
+	pop	bc
+	ld	a, l
+	call	__ltof
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -39)
+	ld	a, (ix + -48)
+	ld	(ix + -48), hl
+	ld	(ix + -54), e
+	call	__fdiv
+	push	bc
+	pop	de
+	ld	(ix + -39), a
+	ld	bc, (_cameraDist)
+	push	bc
+	pop	hl
+	push	bc
+	pop	iy
+	add	iy, iy
+	sbc	hl, hl
+	ld	a, l
+	call	__ltof
+	push	bc
+	pop	hl
+	ld	iyl, a
+	push	de
+	pop	bc
+	ld	a, (ix + -39)
+	ld	(ix + -60), hl
+	push	af
+	ld	a, iyl
+	ld	(ix + -61), a
+	pop	af
+	ld	e, iyl
+	call	__fmul
+	call	__ftol
+	ld	(ix + -57), bc
+	ld	bc, (ix + -27)
+	ld	a, (ix + -30)
+	call	__ftol
+	or	a, a
+	sbc	hl, hl
+	or	a, a
+	sbc	hl, bc
+	push	hl
+	pop	iy
+	ld	(ix + -39), bc
+	push	bc
+	pop	hl
+	ld	de, 0
+	or	a, a
+	sbc	hl, de
+	call	__setflag
+	jq	m, BB2_14
+	ld	iy, (ix + -39)
+BB2_14:
+	lea	hl, iy + 0
+	lea	bc, iy + 0
+	add	iy, iy
+	sbc	hl, hl
+	ld	a, l
+	call	__ltof
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -27)
+	ld	a, (ix + -30)
+	call	__fdiv
+	push	bc
+	pop	hl
+	ld	e, a
+	ld	bc, (ix + -33)
+	ld	a, (ix + -36)
+	call	__fmul
+	ld	hl, (ix + -48)
+	ld	e, (ix + -54)
+	call	__fdiv
+	ld	hl, (ix + -60)
+	ld	e, (ix + -61)
+	call	__fmul
+	call	__ftol
+	ld	(ix + -27), bc
+	ld	hl, (_width)
+	ld	bc, 2
+	call	__idivs
+	ld	de, (ix + -45)
+	add	hl, de
+	ld	de, (ix + -57)
+	add	hl, de
+	ld	iy, (ix + -24)
+	ld	(iy + -3), hl
+	ld	hl, (_height)
+	call	__idivs
+	ld	de, (ix + -39)
+	add	hl, de
+	ld	de, (ix + -27)
+	add	hl, de
+	ld	(iy), hl
+	ld	hl, (ix + -42)
+	ld	(iy + 3), hl
+	ld	bc, (ix + -51)
+	inc	bc
+	lea	iy, iy + 9
+	ld	(ix + -24), iy
+	ld	iy, (ix + -15)
+	lea	iy, iy + 12
+	ld	(ix + -15), iy
+	jq	BB2_6
+BB2_7:
+	ld	hl, -32
+	push	hl
+	call	_gfx_SetColor
+	pop	hl
+	ld	bc, 0
+BB2_15:
+	ld	de, (_lineConnectionsSize)
+	push	bc
+	pop	hl
+	or	a, a
+	sbc	hl, de
+	call	__setflag
+	jq	p, BB2_16
+	ld	hl, (ix + -6)
+	ld	hl, (hl)
+	ld	(ix + -9), bc
+	ld	bc, 9
+	call	__imulu
+	push	hl
+	pop	de
+	ld	iy, _vectorDisplay
+	add	iy, de
+	ld	hl, (iy)
+	ld	(ix + -15), hl
+	ld	de, (iy + 3)
+	ld	iy, (ix + -6)
+	ld	hl, (iy + 3)
+	call	__imulu
+	push	hl
+	pop	bc
+	ld	iy, _vectorDisplay
+	add	iy, bc
+	ld	hl, (iy)
+	ld	bc, (iy + 3)
+	push	bc
+	push	hl
+	push	de
+	ld	hl, (ix + -15)
+	push	hl
+	call	_gfx_Line
+	ld	bc, (ix + -9)
+	pop	hl
+	pop	hl
+	pop	hl
+	pop	hl
+	inc	bc
+	ld	iy, (ix + -6)
+	lea	iy, iy + 6
+	ld	(ix + -6), iy
+	jq	BB2_15
+BB2_16:
+	ld	bc, 0
+BB2_18:
+	ld	de, (_vectorsSize)
+	push	bc
+	pop	hl
+	or	a, a
+	sbc	hl, de
+	call	__setflag
+	jq	p, BB2_19
+	ld	hl, (ix + -12)
+	push	hl
+	ld	(ix + -6), bc
+	call	_gfx_SetColor
+	pop	hl
+	ld	iy, (ix + -3)
+	ld	hl, (iy)
+	ld	de, (iy + 3)
+	ld	bc, 3
+	push	bc
+	push	de
+	push	hl
+	call	_gfx_FillCircle
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, (ix + -6)
+	inc	bc
+	ld	iy, (ix + -3)
+	lea	iy, iy + 9
+	ld	(ix + -3), iy
+	ld	de, (ix + -12)
+	inc	e
+	ld	(ix + -12), de
+	jq	BB2_18
+BB2_19:
+	ld	hl, 1
+	push	hl
+	push	hl
+	ld	hl, L_.str
+	push	hl
+	call	_gfx_PrintStringXY
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, (_rotation)
+	ld	a, (_rotation+3)
+	call	__ftol
+	ld	hl, 1
+	push	hl
+	push	bc
+	call	_gfx_PrintInt
+	pop	hl
+	pop	hl
+	ld	hl, 10
+	push	hl
+	ld	hl, 1
+	push	hl
+	ld	hl, L_.str.1
+	push	hl
+	call	_gfx_PrintStringXY
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, (_rotation+4)
+	ld	a, (_rotation+7)
+	call	__ftol
+	ld	hl, 1
+	push	hl
+	push	bc
+	call	_gfx_PrintInt
+	pop	hl
+	pop	hl
+	ld	hl, 20
+	push	hl
+	ld	hl, 1
+	push	hl
+	ld	hl, L_.str.2
+	push	hl
+	call	_gfx_PrintStringXY
+	pop	hl
+	pop	hl
+	pop	hl
+	ld	bc, (_rotation+8)
+	ld	a, (_rotation+11)
+	call	__ftol
+	ld	hl, 1
+	push	hl
+	push	bc
+	call	_gfx_PrintInt
+	ld	sp, ix
+	pop	ix
+	ret
+	section	.text
+
+	section	.text
+	public	_end
+_end:
+	ret
+	section	.text
+
+	section	.data
+	public	_vectorsSize
+_vectorsSize:
+	dl	8
+
+	section	.data
+	public	_vectors
+_vectors:
+	dd	0x42480000
+	dd	0x42480000
+	dd	0x42480000
+	dd	0x42480000
+	dd	0xc2480000
+	dd	0x42480000
+	dd	0xc2480000
+	dd	0xc2480000
+	dd	0x42480000
+	dd	0xc2480000
+	dd	0x42480000
+	dd	0x42480000
+	dd	0x42480000
+	dd	0x42480000
+	dd	0xc2480000
+	dd	0x42480000
+	dd	0xc2480000
+	dd	0xc2480000
+	dd	0xc2480000
+	dd	0xc2480000
+	dd	0xc2480000
+	dd	0xc2480000
+	dd	0x42480000
+	dd	0xc2480000
+
+	section	.data
+	public	_vectorDisplay
+_vectorDisplay:
+	dl	50
+	dl	50
+	dl	50
+	dl	50
+	dl	16777166
+	dl	50
+	dl	16777166
+	dl	16777166
+	dl	50
+	dl	16777166
+	dl	50
+	dl	50
+	dl	50
+	dl	50
+	dl	16777166
+	dl	50
+	dl	16777166
+	dl	16777166
+	dl	16777166
+	dl	16777166
+	dl	16777166
+	dl	16777166
+	dl	50
+	dl	16777166
+
+	section	.data
+	public	_lineConnectionsSize
+_lineConnectionsSize:
+	dl	12
+
+	section	.data
+	public	_lineConnections
+_lineConnections:
+	dl	0
+	dl	1
+	dl	1
+	dl	2
+	dl	2
+	dl	3
+	dl	3
+	dl	0
+	dl	4
+	dl	5
+	dl	5
+	dl	6
+	dl	6
+	dl	7
+	dl	7
+	dl	4
+	dl	0
+	dl	4
+	dl	1
+	dl	5
+	dl	2
+	dl	6
+	dl	3
+	dl	7
+
+	section	.data
+	public	_colors
+_colors:
+	dd	0x41200000
+	dd	0x41f00000
+	dd	0x42480000
+	dd	0x428c0000
+	dd	0x42b40000
+	dd	0x42dc0000
+	dd	0x43020000
+	dd	0x43160000
+
+	section	.bss
+	public	_rotation
+_rotation:
+	rb	12
+
+	section	.data
+	public	_cameraDist
+_cameraDist:
+	dl	2
+
+	section	.data
+	public	_width
+_width:
+	dl	320
+
+	section	.data
+	public	_height
+_height:
+	dl	240
+
+	section	.rodata
+	private	L_.str
+L_.str:
+	db	88
+	db	114
+	db	58
+	db	32
+	db	0
+
+	section	.rodata
+	private	L_.str.1
+L_.str.1:
+	db	89
+	db	114
+	db	58
+	db	32
+	db	0
+
+	section	.rodata
+	private	L_.str.2
+L_.str.2:
+	db	90
+	db	114
+	db	58
+	db	32
+	db	0
+
+	extern	__setflag
+	extern	_gfx_FillScreen
+	extern	__frameset
+	extern	_gfx_SetTextFGColor
+	extern	__fdiv
+	extern	_gfx_Begin
+	extern	_sin
+	extern	__imulu
+	extern	_gfx_Line
+	extern	__fadd
+	extern	_gfx_SetColor
+	extern	__ltof
+	extern	_gfx_PrintStringXY
+	extern	_gfx_End
+	extern	_gfx_FillCircle
+	extern	__sand
+	extern	_cos
+	extern	_gfx_SwapDraw
+	extern	__fsub
+	extern	__fmul
+	extern	__ftol
+	extern	_gfx_PrintInt
+	extern	__idivs
